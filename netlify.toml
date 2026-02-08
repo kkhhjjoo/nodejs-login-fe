@@ -3,3 +3,9 @@
   to = "http://nodejs-hyunjoo-be-env.eba-vhxd3ycw.us-east-1.elasticbeanstalk.com/api/:splat"
   status = 200
   force = true
+
+  # SPA 라우팅을 위한 설정 추가
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
