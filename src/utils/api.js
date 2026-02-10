@@ -4,14 +4,15 @@ const api = axios.create({
   baseURL: `/api`,
   headers: {
     "Content-Type": "application/json",
-    authorization: "Bearer " + localStorage.getItem("token"),
   },
 });
-/**
- * console.log all requests and responses
- */
+
 api.interceptors.request.use(
   (request) => {
+    const token = sessionStorage.getItem("token");
+    if (token) {
+      request.headers.authorization = "Bearer " + token;
+    }
     console.log("Starting Request", request);
     return request;
   },

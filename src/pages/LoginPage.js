@@ -2,14 +2,13 @@ import { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 
-import { Link, useNavigate } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import api from '../utils/api';
 
-const LoginPage = () => {
+const LoginPage = ({ setUser, user }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
-  const [user, setUser] = useState(null);
   const navigate = useNavigate();
 
   const handleLogin = async (event) => { 
@@ -28,6 +27,9 @@ const LoginPage = () => {
     } catch (error) {
       setError(error.message || "아이디 또는 비밀번호가 일치하지 않습니다");
     }
+  }
+  if (user) { 
+    return <Navigate to="/" />
   }
   return (
     <div className="display-center">
