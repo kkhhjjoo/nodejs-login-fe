@@ -5,12 +5,13 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 
-const TodoPage = () => {
+const TodoPage = ({ user }) => {
   const [todoList, setTodoList] = useState([]);
   const [todoValue, setTodoValue] = useState("");
 
   const getTasks = async () => {
     const response = await api.get("/tasks");
+    console.log('tasklist', response.data.data);
     setTodoList(response.data.data);
   };
   useEffect(() => {
@@ -79,6 +80,7 @@ const TodoPage = () => {
         todoList={todoList}
         deleteItem={deleteItem}
         toggleComplete={toggleComplete}
+        user={user}
       />
     </Container>
   );
